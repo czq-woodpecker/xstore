@@ -1,0 +1,41 @@
+@activeColor: rgb(63, 145, 247);
+
+header {
+  ul {
+    background: rgb(6, 22, 39);
+
+    li {
+      display: inline-block;
+
+      .iconStyle {
+        color: gainsboro;
+        margin-right: 6px;
+      }
+
+      :hover {
+        background: @activeColor;
+        color: white
+      }
+
+      a {
+        display: inline-block;
+        height: 68px;
+        line-height: 68px;
+        padding: 0 1em;
+      }
+    }
+
+  }
+
+  .menuLink {
+    text-decoration: none;
+    color: gainsboro;
+    font-size: 1em;
+  }
+
+  .menuActive {
+    text-decoration: none;
+    color: white;
+    background: @activeColor;
+  }
+}
