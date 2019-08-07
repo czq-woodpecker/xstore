@@ -6,7 +6,11 @@ class Products extends Component {
     return (
       <main id='productsBox'>
         Products
-
+        <ul>
+          <li>
+            
+          </li>
+        </ul>
       </main>
     );
   }

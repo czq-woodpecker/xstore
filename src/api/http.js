@@ -20,11 +20,10 @@ export function postData(url, data) {
       body: JSON.stringify(data),
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
-      }
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
     })
       .then(response => resolve(response))
-      .catch(error => reject(error))
   })
 }
 

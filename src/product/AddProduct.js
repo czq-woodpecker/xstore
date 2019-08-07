@@ -34,7 +34,9 @@ class AddProduct extends Component {
         <input type="text" value={this.state.unit} onChange={this.setUnit}/>
         <label><span className={'mustItemFlag'}>*&nbsp;</span>图片:</label>
         <input type="text" value={this.state.imageUrl} onChange={this.setImageUrl}/>
-        <button type='submit' className={this.state.btnClass} onClick={this.handleSubmit} disabled={this.state.disableSubmit}>提交</button>
+        <button type='submit' className={this.state.btnClass} onClick={this.handleSubmit}
+                disabled={this.state.disableSubmit}>提交
+        </button>
       </main>
     );
   }
@@ -90,11 +92,13 @@ class AddProduct extends Component {
       unit: this.state.unit,
       imageUrl: this.state.imageUrl
     })
-      .then(reponse => {
-        if(reponse.status === 201) {
+      .then(response => {
+        if (response.ok) {
           alert('商品添加成功');
         } else {
-          alert('商品添加失败');
+          response.text().then(errorMessage => {
+            alert(errorMessage);
+          })
         }
       })
       .catch(error => {
