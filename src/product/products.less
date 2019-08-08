@@ -1,6 +1,30 @@
 #productsBox {
-  margin: 2em 1em;
-  padding: 1em;
+  margin: 1em 2%;
   background: white;
-  height: 600px;
+  min-height: 600px;
+
+  ul li {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 20%;
+    margin: 1% 0 0 4%;
+    border: 1px solid gainsboro;
+    padding: 8px;
+
+    img{
+      width: 100%;
+      text-align: center;
+    }
+
+    .productName, .productPrice{
+      margin-left: 1em;
+    }
+
+
+    .addItemIcon{
+      float: right;
+      font-size: 20px;
+      color: gray;
+    }
+  }
 }

@@ -20,6 +20,7 @@ class AddProduct extends Component {
     this.setUnit = this.setUnit.bind(this);
     this.setImageUrl = this.setImageUrl.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.initAddProductInput = this.initAddProductInput.bind(this);
   }
 
   render() {
@@ -95,6 +96,7 @@ class AddProduct extends Component {
       .then(response => {
         if (response.ok) {
           alert('商品添加成功');
+          this.initAddProductInput();
         } else {
           response.text().then(errorMessage => {
             alert(errorMessage);
@@ -104,6 +106,17 @@ class AddProduct extends Component {
       .catch(error => {
         alert('连接服务器失败');
       })
+  }
+
+  initAddProductInput() {
+    this.setState({
+      name: '',
+      price: '',
+      unit: '',
+      imageUrl: '',
+      disableSubmit: true,
+      btnClass: 'disableBtn'
+    });
   }
 }
 
