@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from "./Header";
 import './home.less'
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import AddProduct from "../product/AddProduct";
 import Products from "../product/Products";
 import Orders from "../order/Orders";
@@ -15,6 +15,7 @@ class Home extends Component {
           <Route exact path={'/product/add'} component={AddProduct} />
           <Route exact path={'/products'} component={Products} />
           <Route exact path={'/orders'} component={Orders} />
+          <Redirect from='/' to='/products'/>
         </Switch>
       </div>
     );
