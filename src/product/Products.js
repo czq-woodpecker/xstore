@@ -20,8 +20,6 @@ class Products extends Component {
   }
 
   render() {
-    const products = this.props.products;
-
     return (
       <main id='productsBox'>
         <ul>
