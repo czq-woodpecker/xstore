@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import './products.less';
 import {NavLink} from "react-router-dom";
 import {MdAddCircleOutline} from "react-icons/md";
-import {productReducer} from "../reducers/productReducer";
 import {getProductsAction} from "../actions/productAction";
 import {connect} from "react-redux";
 import {addOrder} from "../api/orders";
 import {BASE_STATIC_URL} from "../api/http";
+import {reducer} from "../reducers/reducer";
 
 class Products extends Component {
 
@@ -56,7 +56,7 @@ class Products extends Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.productReducer.products
+  products: state.reducer.products
 })
 
 const mapDispatchToProps = dispatch => ({
