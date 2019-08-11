@@ -7,7 +7,7 @@ export const getProductsAction = () => (dispatch => {
     .then(response => {
       dispatch({
         type: GET_PRODUCTS,
-        payload: response.data
+        payload: response
       })
     })
 })

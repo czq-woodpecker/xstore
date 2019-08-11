@@ -5,17 +5,23 @@ import {MdAddCircleOutline} from "react-icons/md";
 import {productReducer} from "../reducers/productReducer";
 import {getProductsAction} from "../actions/productAction";
 import {connect} from "react-redux";
-import {BASE_STATIC_URL} from "../api/product";
+import {addOrder} from "../api/orders";
+import {BASE_STATIC_URL} from "../api/http";
 
 class Products extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.buyProduct = this.buyProduct.bind(this);
+  }
 
   componentDidMount() {
     this.props.getProducts();
   }
 
   render() {
-    console.log(this.props.products);
     const products = this.props.products;
+
     return (
       <main id='productsBox'>
         <ul>
@@ -24,37 +30,30 @@ class Products extends Component {
               <img src={BASE_STATIC_URL + '/' + product.imageUrl} alt="图片未找到"/>
               <h4 className={'productName'}>{product.name}</h4>
               <div className={'productPrice'}>单价{product.price}元/{product.unit}</div>
-              <MdAddCircleOutline className={'addItemIcon'} />
+              <MdAddCircleOutline className={'addItemIcon'} onClick={() => this.buyProduct(product.id)}/>
             </li>
           ))}
-
-          {/*<li>*/}
-          {/*  <img src="http://localhost:8080/images/iphonex.jpg" alt="图片未找到"/>*/}
-          {/*  <h4 className={'productTitle'}>苹果</h4>*/}
-          {/*  <div className={'productPrice'}>单价1元/瓶</div>*/}
-          {/*  <MdAddCircleOutline className={'addItemIcon'}></MdAddCircleOutline>*/}
-          {/*</li>*/}
-          {/*<li>*/}
-          {/*  <img src="http://localhost:8080/images/iphonex.jpg" alt="图片未找到"/>*/}
-          {/*  <h4 className={'productTitle'}>苹果</h4>*/}
-          {/*  <div className={'productPrice'}>单价1元/瓶</div>*/}
-          {/*  <MdAddCircleOutline className={'addItemIcon'}></MdAddCircleOutline>*/}
-          {/*</li>*/}
-          {/*<li>*/}
-          {/*  <img src="http://localhost:8080/images/iphonex.jpg" alt="图片未找到"/>*/}
-          {/*  <h4 className={'productTitle'}>苹果</h4>*/}
-          {/*  <div className={'productPrice'}>单价1元/瓶</div>*/}
-          {/*  <MdAddCircleOutline className={'addItemIcon'}></MdAddCircleOutline>*/}
-          {/*</li>*/}
-          {/*<li>*/}
-          {/*  <img src="http://localhost:8080/images/iphonex.jpg" alt="图片未找到"/>*/}
-          {/*  <h4 className={'productTitle'}>苹果</h4>*/}
-          {/*  <div className={'productPrice'}>单价1元/瓶</div>*/}
-          {/*  <MdAddCircleOutline className={'addItemIcon'}></MdAddCircleOutline>*/}
-          {/*</li>*/}
         </ul>
       </main>
     );
+  }
+
+  buyProduct(productId) {
+    addOrder({
+      productId: productId
+    })
+      .then(response => {
+        if (response.ok) {
+          alert('添加成功');
+        } else {
+          response.text().then(errorMessage => {
+            alert(errorMessage);
+          })
+        }
+      })
+      .catch(() => {
+        alert('连接失败')
+      })
   }
 }
 

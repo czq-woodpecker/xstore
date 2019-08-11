@@ -1,3 +1,5 @@
+@import "../variables";
+
 #productsBox {
   margin: 1em 2%;
   background: white;
@@ -25,6 +27,11 @@
       float: right;
       font-size: 20px;
       color: gray;
+      cursor: pointer;
+
+      .enableClick{
+        color: @activeColor;
+      }
     }
   }
 }
